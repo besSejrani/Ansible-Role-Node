@@ -6,7 +6,8 @@
   apt:
     name: "{{ item }}"
     update_cache: yes
-  with_items:
+    state: present
+  loop:
     - python3
     - python3-dev
     - make
