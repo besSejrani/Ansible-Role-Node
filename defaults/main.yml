@@ -1,0 +1,4 @@
+---
+# vars file for node
+NODEJS_VERSION: "20"
+NODEJS_DISTRIBUTION_RELEASE: "focal" #trusty

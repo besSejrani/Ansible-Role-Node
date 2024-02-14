@@ -1,0 +1,36 @@
+---
+# =================================================
+# Install Node.js Dependencies
+# =================================================
+- name: "Install required tools"
+  apt:
+    name: "{{ item }}"
+    update_cache: yes
+  with_items:
+    - python3
+    - python3-dev
+    - make
+    - g++
+
+# =================================================
+# GPG Key
+# =================================================
+- name: Install the gpg key for node.js LTS
+  apt_key:
+    url: "https://deb.nodesource.com/gpgkey/nodesource.gpg.key"
+    state: present
+
+# =================================================
+# Install LTS
+# =================================================
+- name: Install the Node.js LTS repos
+  apt_repository:
+    repo: "deb https://deb.nodesource.com/node_{{ NODEJS_VERSION }}.x {{ NODEJS_DISTRIBUTION_RELEASE }} main"
+    state: present
+    update_cache: yes
+
+- name: Installation
+  apt:
+    update_cache: yes
+    name: nodejs
+    state: present
